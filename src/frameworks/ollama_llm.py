@@ -6,12 +6,20 @@ import os
 load_dotenv()
 llm_model = os.getenv('ollama_model')
 
-response: ChatResponse = chat(model=llm_model, messages=[
-  {
-    'role': 'user',
-    'content': 'Why is the sky blue?',
-  },
-])
-print(response['message']['content'])
-# or access fields directly from the response object
-print(response.message.content)
+def OllamaChat(prompt: str) -> ChatResponse:
+  response: ChatResponse = chat(model=llm_model, messages=[
+    {
+      'role': 'user',
+      'content': prompt,
+    },
+  ])
+  return response
+
+def OllamaChatStream(prompt: str) -> ChatResponse:
+  response: ChatResponse = chat(model=llm_model, messages=[
+    {
+      'role': 'user',
+      'content': prompt,
+    },
+  ], stream=True)
+  return response
