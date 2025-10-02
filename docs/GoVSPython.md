@@ -1,0 +1,1 @@
+# Go Lang vs Python For Gen AI
